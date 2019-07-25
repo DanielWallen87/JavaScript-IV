@@ -24,6 +24,16 @@ class Instructor extends Person {
     grade (student, subject) {
         console.log(`${student.name} receives a perfect score on ${subject}`);
     }
+    updateGrade (student) { // I know the instructions said "graduate," but this makes more sense to me
+        student.grade += Math.round(Math.random() * 10);
+        if (student.grade > 70) {
+            console.log(`${student.name} passed with flying colors!`);
+        }
+        else if (student.grade < 70) {
+            student.grade += Math.round(Math.random() * 5);
+            console.log(`${student.name} currently has ${student.grade}. So close... keep going!`)
+        }
+    }
 }
 
 class Student extends Instructor {
@@ -32,6 +42,7 @@ class Student extends Instructor {
         this.previousBackground = attrs.previousBackground;
         this.className = attrs.className;
         this.faveSubjects = attrs.faveSubjects;
+        this.grade = attrs.grade;
     }
     listsSubjects() {
         console.log(`${this.faveSubjects}`);
@@ -98,7 +109,8 @@ const daniel = new Student({
     catchPhrase: `The way you do one thing is the way you do everything`,
     previousBackground: `Freelance writing, banking, waiting tables, walking dogs`,
     className: `Web22`,
-    faveSubjects: ['Array methods', 'CSS animations']
+    faveSubjects: ['Array methods', 'CSS animations'],
+    grade: 100
   });
 
   bob.grade(daniel, "Javascript");
@@ -114,7 +126,8 @@ const daniel = new Student({
     catchPhrase: `Just do it`,
     previousBackground: `Writing children's books`,
     className: `Web22`,
-    faveSubjects: ['all', 'of', 'them']
+    faveSubjects: ['all', 'of', 'them'],
+    grade: 50
   });
 
   dillon.PRassignment("Object oriented programming");
@@ -128,7 +141,8 @@ const daniel = new Student({
     catchPhrase: `Let them have their cake (and eat it, too)`,
     previousBackground: `Decorating cupcakes`,
     className: `Web24`,
-    faveSubjects: ['drawing', 'baking', 'caking']
+    faveSubjects: ['drawing', 'baking', 'caking'], 
+    grade: 75
   });
 
   david.listsSubjects();
@@ -164,3 +178,9 @@ const daniel = new Student({
   });
 
   elijah.debug(daniel, "Agile");
+
+  bob.updateGrade(daniel);
+  bob.updateGrade(david);
+  
+  brandon.updateGrade(dillon);
+  brandon.updateGrade(dillon);
